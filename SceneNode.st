@@ -43,6 +43,8 @@ KeyedObject subclass: SceneNode [
 
 	receiveMsg: msg [
 		|handled|
+
+		handled := false.
 		(msg class == NodeRefMsg) isTrue: [
 			(msg tag == #kSceneObject) isTrue: [
 				SceneObjects add: (msg obj).
@@ -51,7 +53,9 @@ KeyedObject subclass: SceneNode [
 				PoolObjects add: (msg obj).
 			].
 			handled := true.
-		] isFalse: [
+		].
+
+		handled isFalse: [
 			handled := super receiveMsg msg.
 		].
 		^handled.
