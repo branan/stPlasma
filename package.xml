@@ -1,0 +1,11 @@
+<package>
+  <name>Plasma</name>
+  <file>Creatable.st</file>
+  <file>KeyedObject.st</file>
+  <file>SceneNode.st</file>
+
+  <!-- These need to be kept in heirarchy order-->
+  <filein>Creatable.st</filein>
+  <filein>KeyedObject.st</filein>
+  <filein>SceneNode.st</filein>
+</package>
