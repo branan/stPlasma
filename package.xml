@@ -1,10 +1,16 @@
 <package>
   <name>Plasma</name>
+  <!-- keep everything in heirarchy/dependency order-->
+  <file>Location.st</file>
+  <file>LoadMask.st</file>
+  <file>Uoid.st</file>
   <file>Creatable.st</file>
   <file>KeyedObject.st</file>
   <file>SceneNode.st</file>
 
-  <!-- These need to be kept in heirarchy order-->
+  <filein>Location.st</filein>
+  <filein>LoadMask.st</filein>
+  <filein>Uoid.st</filein>
   <filein>Creatable.st</filein>
   <filein>KeyedObject.st</filein>
   <filein>SceneNode.st</filein>

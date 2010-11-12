@@ -1,27 +1,29 @@
 Creatable subclass: KeyedObject [
-	| key |
+	|
+		fKey
+	|
 
 	<category: 'plasma'>
 	<comment: 'I am the base for all objects with a key, known by the ResMgr'>
 
-	key [
-		^key.
+	Key [
+		^fKey.
 	]
 
-	key: aKey [
-		key := aKey.
+	Key: aKey [
+		fKey := aKey.
 		^self.
 	]
 
 	readPrp: stream withManager: resMgr [
 		<category: 'creatable'>
-		key := resMgr readKeyFromStream: stream.
+		fKey := resMgr readKeyFromStream: stream.
 		^nil.
 	]
 
 	writePrp: stream withManager: resMgr [
 		<category: 'creatable'>
-		resMgr writeKey: key toStream: stream.
+		resMgr writeKey: fKey toStream: stream.
 		^nil.
 	]
 

@@ -1,5 +1,8 @@
 KeyedObject subclass: SceneNode [
-	| SceneObjects PoolObjects |
+	|
+		fSceneObjects
+		fPoolObjects
+	|
 
 	<category: 'plasma'>
 	<comment: 'I hold references to everything involved in creating a scene'>
@@ -14,8 +17,8 @@ KeyedObject subclass: SceneNode [
 
 	init [
 		super init. 
-		SceneObjects := Set new.
-		PoolObjects := Set new.
+		fSceneObjects := Set new.
+		fPoolObjects := Set new.
 	]
 
 	readPrp: stream withManager: resMgr [
@@ -24,18 +27,18 @@ KeyedObject subclass: SceneNode [
 			resMgr readKeyAndNotify: self withTag: #kSceneObject
 		].
 		stream readInt32 timesRepeat: [
-			resMgr readKeyAndNotif: self withTag: #kPoolObject
+			resMgr readKeyAndNotify: self withTag: #kPoolObject
 		].
 		^nil.
 	]
 
 	writePrp: stream withManager: resMgr [
 		stream writeInt32: (SceneObjects size).
-		SceneObjects do: [ :obj |
+		fSceneObjects do: [ :obj |
 			resMgr writeKey: (obj key) toStream: stream.
 		].
 		stream writeInt32: (PoolObjects size).
-		PoolObjects do:[ :obj |
+		fPoolObjects do:[ :obj |
 			resMgr writeKey: (obj key) toStream: stream.
 		].
 		^nil.
@@ -47,10 +50,10 @@ KeyedObject subclass: SceneNode [
 		handled := false.
 		(msg class == NodeRefMsg) isTrue: [
 			(msg tag == #kSceneObject) isTrue: [
-				SceneObjects add: (msg obj).
+				fSceneObjects add: (msg obj).
 			].
 			(msg tag == #kPoolObject) isTrue: [
-				PoolObjects add: (msg obj).
+				fPoolObjects add: (msg obj).
 			].
 			handled := true.
 		].
