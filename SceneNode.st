@@ -7,16 +7,19 @@ KeyedObject subclass: SceneNode [
 	<category: 'plasma'>
 	<comment: 'I hold references to everything involved in creating a scene'>
 
-	SceneObjects [
-		^SceneObjects.
+	fSceneObjects [
+		^fSceneObjects.
 	]
 
-	PoolObjects [
-		^PoolObjects.
+	fPoolObjects [
+		^fPoolObjects.
 	]
 
-	init [
-		super init. 
+	SceneNode class >> new [
+		^(super new) initSceneNode.
+	]
+
+	initSceneNode [
 		fSceneObjects := Set new.
 		fPoolObjects := Set new.
 	]
@@ -49,11 +52,11 @@ KeyedObject subclass: SceneNode [
 
 		handled := false.
 		(msg class == NodeRefMsg) isTrue: [
-			(msg tag == #kSceneObject) isTrue: [
-				fSceneObjects add: (msg obj).
+			(msg fTag == #kSceneObject) isTrue: [
+				fSceneObjects add: (msg fObj).
 			].
-			(msg tag == #kPoolObject) isTrue: [
-				fPoolObjects add: (msg obj).
+			(msg fTag == #kPoolObject) isTrue: [
+				fPoolObjects add: (msg fObj).
 			].
 			handled := true.
 		].

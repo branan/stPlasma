@@ -6,13 +6,18 @@ Creatable subclass: KeyedObject [
 	<category: 'plasma'>
 	<comment: 'I am the base for all objects with a key, known by the ResMgr'>
 
-	Key [
+	fKey [
 		^fKey.
 	]
 
-	Key: aKey [
+	fKey: aKey [
 		fKey := aKey.
 		^self.
+	]
+
+	KeyedObject class >> new [
+		^(super new)
+			fKey: nil.
 	]
 
 	readPrp: stream withManager: resMgr [

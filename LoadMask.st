@@ -1,2 +1,7 @@
 Object subclass: LoadMask [
+	|
+		mask
+	|
+
+	
 ]

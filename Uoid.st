@@ -75,23 +75,23 @@ Object subclass: Uoid [
 		^self.
 	]
 
-	kHasCloneIDs [
+	Uoid class >> kHasCloneIDs [
 		^1.
 	]
 
-	kHasLoadMask [
+	Uoid class >> kHasLoadMask [
 		^2.
 	]
 
-	init [
-		super init.
-		fLocation := Location new.
-		fLoadMask := LoadMask new.
-		fPlayerId := 0.
-		fCloneId := 0.
-		fObjectName := ''.
-		fObjectId := 0.
-		fObjectClass := nil.
+	Uoid class >> new [
+		^(super new)
+			fLocation: Location new;
+			fLoadMask: LoadMask new;
+			fPlayerId: 0;
+			fCloneId: 0;
+			fObjectName: '';
+			fObjectId: 0;
+			fObjectClass: nil.
 	]
 
 	readPrp: stream withManager: resMgr [
