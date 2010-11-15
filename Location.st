@@ -4,6 +4,9 @@ Object subclass: Location [
 		fFlags
 	|
 
+	<category: 'plasma'>
+	<comment: 'I am a handler for age and page IDs'>
+
 	fSequenceNumber [
 		^fSequenceNumber.
 	]
