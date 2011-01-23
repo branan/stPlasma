@@ -97,7 +97,7 @@ Object subclass: Uoid [
 	readPrp: stream withManager: resMgr [
 		| contents |
 
-		contents := stream readByte.
+		contents := stream readUInt8.
 		fLocation readPrp: stream.
 		((contents bitAnd: (self kHasLoadMask)) == 0) isFalse: [
 			fLoadMask setAlways.
@@ -124,13 +124,13 @@ Object subclass: Uoid [
 		(fLoadMask isUsed) isTrue: [
 			contents := contents bitOr: (self kHasLoadMask).
 		].
-		stream writeByte: contents.
+		stream writeUInt8: contents.
 		fLocation writePrp: stream.
 		(fLoadMask isUsed) isTrue: [
 			fLoadMask writePrp: stream.
 		].
-		stream writeShort: (resMgr idFromClass: fObjectClass).
-		stream writeInt: fObjectId.
+		stream writeInt16: (resMgr idFromClass: fObjectClass).
+		stream writeInt32: fObjectId.
 		stream writeSafeString: fObjectName.
 		(fCloneId == 0) isFalse: [
 			stream writeInt32: fCloneId.

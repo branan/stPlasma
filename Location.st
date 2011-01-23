@@ -34,7 +34,7 @@ Object subclass: Location [
 	]
 
 	isValid [
-		^fSequenceNumber ~= 16rffffffff.
+		^fSequenceNumber ~= 16rFFFFFFFF.
 	]
 
 	isReserved [

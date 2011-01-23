@@ -1,6 +1,7 @@
 Creatable subclass: KeyedObject [
 	|
 		fKey
+		fKeyedObjectFlags
 	|
 
 	<category: 'plasma'>
@@ -15,9 +16,34 @@ Creatable subclass: KeyedObject [
 		^self.
 	]
 
+	fKeyedObjectFlags [
+		^fKeyedObjectFlags.
+	]
+
+	fKeyedObjectFlags: someFlags [
+		fKeyedObjectFlags := someFlags.
+		^self.
+	]
+
+	KeyedObject class >> kFlagPreventLoad [
+		^1.
+	]
+
+	KeyedObject class >> kFlagPreventReset [
+		^2.
+	]
+
+	KeyedObject class >> kFlagPreventInit [
+		^4.
+	]
+
 	KeyedObject class >> new [
-		^(super new)
-			fKey: nil.
+		^(super new) initKeyedObject; yourself
+	]
+
+	initKeyedObject [
+		fKey := Key new.
+		fKeyedObjectFlags := 0.
 	]
 
 	readPrp: stream withManager: resMgr [

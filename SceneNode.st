@@ -1,7 +1,7 @@
 KeyedObject subclass: SceneNode [
 	|
 		fSceneObjects
-		fPoolObjects
+		fGenericPool
 	|
 
 	<category: 'plasma'>
@@ -11,8 +11,8 @@ KeyedObject subclass: SceneNode [
 		^fSceneObjects.
 	]
 
-	fPoolObjects [
-		^fPoolObjects.
+	fGenericPool [
+		^fGenericPool.
 	]
 
 	SceneNode class >> new [
@@ -20,8 +20,8 @@ KeyedObject subclass: SceneNode [
 	]
 
 	initSceneNode [
-		fSceneObjects := Set new.
-		fPoolObjects := Set new.
+		fSceneObjects := (Set new).
+		fGenericPool := (Set new).
 	]
 
 	readPrp: stream withManager: resMgr [
@@ -38,11 +38,11 @@ KeyedObject subclass: SceneNode [
 	writePrp: stream withManager: resMgr [
 		stream writeInt32: (SceneObjects size).
 		fSceneObjects do: [ :obj |
-			resMgr writeKey: (obj key) toStream: stream.
+			resMgr writeKey: (obj fKey) toStream: stream.
 		].
 		stream writeInt32: (PoolObjects size).
-		fPoolObjects do:[ :obj |
-			resMgr writeKey: (obj key) toStream: stream.
+		fGenericPool do:[ :obj |
+			resMgr writeKey: (obj fKey) toStream: stream.
 		].
 		^nil.
 	]
@@ -56,7 +56,7 @@ KeyedObject subclass: SceneNode [
 				fSceneObjects add: (msg fObj).
 			].
 			(msg fTag == #kPoolObject) isTrue: [
-				fPoolObjects add: (msg fObj).
+				fGenericPool add: (msg fObj).
 			].
 			handled := true.
 		].

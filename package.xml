@@ -4,14 +4,22 @@
   <file>Location.st</file>
   <file>LoadMask.st</file>
   <file>Uoid.st</file>
+  <file>Key.st</file>
   <file>Creatable.st</file>
   <file>KeyedObject.st</file>
   <file>SceneNode.st</file>
+  <file>NetGroupId.st</file>
+  <file>SynchedObject.st</file>
+  <file>SceneObject.st</file>
 
   <filein>Location.st</filein>
   <filein>LoadMask.st</filein>
   <filein>Uoid.st</filein>
+  <filein>Key.st</filein>
   <filein>Creatable.st</filein>
   <filein>KeyedObject.st</filein>
   <filein>SceneNode.st</filein>
+  <filein>NetGroupId.st</filein>
+  <filein>SynchedObject.st</filein>
+  <filein>SceneObject.st</filein>
 </package>
